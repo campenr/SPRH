@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public int shape;
     private int previousShape;
 
+    public float accelleration = 1f;
     public float jumpStrength = 1000f;
 
     // Start is called before the first frame update
@@ -63,9 +64,6 @@ public class Player : MonoBehaviour
 
         previousShape = shape;
 
-        print("SHAPE: " + shape);
-        print("SPRITE: " + spriteRenderer.sprite.name);
-
         switch (shape)
         {
             case 0:
@@ -82,7 +80,7 @@ public class Player : MonoBehaviour
         float xInput = Input.GetAxisRaw("Horizontal");
         if (xInput != 0f)
         {
-            rigidBody.AddTorque(xInput * -1f);  // invert axis input into correct rolling direction.
+            rigidBody.AddTorque(xInput * -(accelleration));  // invert axis input into correct rolling direction.
         }
     }
 
