@@ -80,10 +80,8 @@ public class Player : MonoBehaviour
     {
         if ((collision.collider.tag == "Wall") && (shape == 1))
         {
-            print("cancelling velocity...");
-            rigidBody.angularVelocity = 0f; // = new Vector2(0,0);
+            rigidBody.angularVelocity = 0f;  // cancel all rotation when we hit a wall as a square.
         }
-        print("Velocity: " + rigidBody.velocity);
     }
 
     void ApplyCircleMovement()
@@ -92,7 +90,7 @@ public class Player : MonoBehaviour
         if (xInput != 0f)
         {
             rigidBody.AddForce(new Vector2(xInput * acceleration, 0));
-            rigidBody.AddTorque(xInput * -(angularAcceleration));  // invert axis input into correct rolling direction.
+            rigidBody.AddTorque(-(xInput) * angularAcceleration);  // input axis inverted to apply correct rolling direction.
         }
     }
 
