@@ -28,8 +28,8 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _EmissionIntensity: 1.01
-    - _Saturation: 1
+    - _EmissionIntensity: 1.5
+    - _Saturation: 2
     m_Colors:
     - _Color: {r: 0.93333334, g: 0.8490687, b: 0.109803915, a: 0}
   m_BuildTextureStacks: []
