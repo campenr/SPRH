@@ -15,8 +15,9 @@ public class Player : MonoBehaviour
     public int shape;
     private int previousShape;
 
-    public float accelleration = 1f;
-    public float jumpStrength = 1000f;
+    public float acceleration = 2.5f;
+    public float angularAcceleration = 1f;
+    public float jumpStrength = 3500;
 
     // Start is called before the first frame update
     void Start()
@@ -75,12 +76,23 @@ public class Player : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if ((collision.collider.tag == "Wall") && (shape == 1))
+        {
+            print("cancelling velocity...");
+            rigidBody.angularVelocity = 0f; // = new Vector2(0,0);
+        }
+        print("Velocity: " + rigidBody.velocity);
+    }
+
     void ApplyCircleMovement()
     {
         float xInput = Input.GetAxisRaw("Horizontal");
         if (xInput != 0f)
         {
-            rigidBody.AddTorque(xInput * -(accelleration));  // invert axis input into correct rolling direction.
+            rigidBody.AddForce(new Vector2(xInput * acceleration, 0));
+            rigidBody.AddTorque(xInput * -(angularAcceleration));  // invert axis input into correct rolling direction.
         }
     }
 
